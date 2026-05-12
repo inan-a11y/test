@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OROS Logo Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #111;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 64px;
+      font-family: system-ui, sans-serif;
+    }
+
+    /* ── Pulse keyframes ─────────────────────────────────────────────── */
+    @keyframes breath {
+      0%, 100% { opacity: 0.5; }
+      50%       { opacity: 1;   }
+    }
+    @keyframes innerBreath {
+      0%, 100% { opacity: 0.03; }
+      50%       { opacity: 0.13; }
+    }
+    @keyframes hairline {
+      0%, 100% { opacity: 0.2; }
+      50%       { opacity: 0.75; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .glow-layer, .hairline, .inner-glow { animation: none !important; }
+    }
+
+    /* ── Logo card ───────────────────────────────────────────────────── */
+    .logo-wrap {
+      background: #1A1A1A;
+      padding: 48px 64px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg text {
+      font-family: 'Cinzel', 'Trajan Pro', Georgia, serif;
+      font-weight: 700;
+    }
+
+    /* Layer 1 — cobalt halo */
+    .glow-layer {
+      animation: breath 4s ease-in-out infinite;
+      opacity: 0.75;
+    }
+
+    /* Layer 2 — inner counter luminance */
+    .inner-glow {
+      animation: innerBreath 4s ease-in-out infinite;
+    }
+
+    /* Layer 4 — hairline stroke */
+    .hairline {
+      animation: hairline 4s ease-in-out infinite;
+      opacity: 0.4;
+    }
+
+    /* ── Size variants label ─────────────────────────────────────────── */
+    .label {
+      color: #444;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .variant { display: flex; flex-direction: column; align-items: center; }
+  </style>
+</head>
+<body>
+
+  <!-- ── Default size ─────────────────────────────────────────────────── -->
+  <div class="variant">
+    <p class="label">Default — h-14</p>
+    <div class="logo-wrap">
+      <svg viewBox="0 0 240 84" xmlns="http://www.w3.org/2000/svg"
+           aria-label="OROS" role="img" height="56" style="display:block;">
+        <defs>
+          <filter id="cobaltEdge" x="-25%" y="-25%" width="150%" height="150%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+            <feFlood flood-color="#2E5BFF" flood-opacity="1" result="cobalt"/>
+            <feComposite in="cobalt" in2="blur" operator="in" result="glow"/>
+          </filter>
+        </defs>
+
+        <!-- Layer 1: pulsing cobalt halo -->
+        <g class="glow-layer" filter="url(#cobaltEdge)" aria-hidden="true">
+          <path d="M 30 70 C 10 70 10 44 20 39 L 30 32 L 40 39 C 50 44 50 70 30 70 Z
+                   M 30 42 C 36.6 42 42 46.7 42 52.5 C 42 58.3 36.6 63 30 63
+                   C 23.4 63 18 58.3 18 52.5 C 18 46.7 23.4 42 30 42 Z"
+                fill="#F5F5F5" fill-rule="evenodd"/>
+          <text x="62" y="70" font-size="52" fill="#F5F5F5" letter-spacing="12">ROS</text>
+        </g>
+
+        <!-- Layer 2: inner counter luminance -->
+        <path class="inner-glow" aria-hidden="true"
+              d="M 30 42 C 36.6 42 42 46.7 42 52.5 C 42 58.3 36.6 63 30 63
+                 C 23.4 63 18 58.3 18 52.5 C 18 46.7 23.4 42 30 42 Z"
+              fill="#2E5BFF" fill-opacity="0.06"/>
+
+        <!-- Layer 3: crisp marble-white letterforms -->
+        <g aria-hidden="true">
+          <path d="M 30 70 C 10 70 10 44 20 39 L 30 32 L 40 39 C 50 44 50 70 30 70 Z
+                   M 30 42 C 36.6 42 42 46.7 42 52.5 C 42 58.3 36.6 63 30 63
+                   C 23.4 63 18 58.3 18 52.5 C 18 46.7 23.4 42 30 42 Z"
+                fill="#F5F5F5" fill-rule="evenodd"/>
+          <text x="62" y="70" font-size="52" fill="#F5F5F5" letter-spacing="12">ROS</text>
+        </g>
+
+        <!-- Layer 4: cobalt hairline on the O silhouette -->
+        <path class="hairline" aria-hidden="true"
+              d="M 30 70 C 10 70 10 44 20 39 L 30 32 L 40 39 C 50 44 50 70 30 70 Z"
+              fill="none" stroke="#2E5BFF" stroke-width="0.75"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── Large size ────────────────────────────────────────────────────── -->
+  <div class="variant">
+    <p class="label">Large — h-24</p>
+    <div class="logo-wrap">
+      <svg viewBox="0 0 240 84" xmlns="http://www.w3.org/2000/svg"
+           aria-label="OROS" role="img" height="96" style="display:block;">
+        <defs>
+          <filter id="cobaltEdge2" x="-25%" y="-25%" width="150%" height="150%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+            <feFlood flood-color="#2E5BFF" flood-opacity="1" result="cobalt"/>
+            <feComposite in="cobalt" in2="blur" operator="in" result="glow"/>
+          </filter>
+        </defs>
+        <g class="glow-layer" filter="url(#cobaltEdge2)" aria-hidden="true">
+          <path d="M 30 70 C 10 70 10 44 20 39 L 30 32 L 40 39 C 50 44 50 70 30 70 Z
+                   M 30 42 C 36.6 42 42 46.7 42 52.5 C 42 58.3 36.6 63 30 63
+                   C 23.4 63 18 58.3 18 52.5 C 18 46.7 23.4 42 30 42 Z"
+                fill="#F5F5F5" fill-rule="evenodd"/>
+          <text x="62" y="70" font-size="52" fill="#F5F5F5" letter-spacing="12">ROS</text>
+        </g>
+        <path class="inner-glow" aria-hidden="true"
+              d="M 30 42 C 36.6 42 42 46.7 42 52.5 C 42 58.3 36.6 63 30 63
+                 C 23.4 63 18 58.3 18 52.5 C 18 46.7 23.4 42 30 42 Z"
+              fill="#2E5BFF" fill-opacity="0.06"/>
+        <g aria-hidden="true">
+          <path d="M 30 70 C 10 70 10 44 20 39 L 30 32 L 40 39 C 50 44 50 70 30 70 Z
+                   M 30 42 C 36.6 42 42 46.7 42 52.5 C 42 58.3 36.6 63 30 63
+                   C 23.4 63 18 58.3 18 52.5 C 18 46.7 23.4 42 30 42 Z"
+                fill="#F5F5F5" fill-rule="evenodd"/>
+          <text x="62" y="70" font-size="52" fill="#F5F5F5" letter-spacing="12">ROS</text>
+        </g>
+        <path class="hairline" aria-hidden="true"
+              d="M 30 70 C 10 70 10 44 20 39 L 30 32 L 40 39 C 50 44 50 70 30 70 Z"
+              fill="none" stroke="#2E5BFF" stroke-width="0.75"/>
+      </svg>
+    </div>
+  </div>
+
+</body>
+</html>
